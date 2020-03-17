@@ -1,46 +1,26 @@
-package minijava.symboltable;
+package lab2.symboltable;
 
-/**
- * è¡¨ç¤ºç±»å‹çš„ç±»ï¼ŒsymboltableåŒ…ä¸­æ‰€æœ‰ç±»çš„çˆ¶ç±»
- */
-public abstract class MType {
-	/* åç§° */
-	protected String name;
-	/* æ‰€åœ¨è¡Œ */
-	protected int line = 0;
-	/* æ‰€åœ¨åˆ— */
-	protected int column = 0;
+public class MType {
+	public String name; // ·ûºÅµÄÃû³Æ
+	public int line, column;
+	// -1±íÊ¾Ã»ÓĞ¶¨Î»µ½Õâ¸ö·ûºÅ
 
-	public MType() {
-	};
-
-	public MType(int m_line, int m_column) {
-		line = m_line;
-		column = m_column;
+	MType() {
+		line = -1;
+		column = -1;
+	}
+	MType(int _line, int _column) {
+		line = _line;
+		column = _column;
+	}
+	MType(int _line, int _column, String _name) {
+		line = _line;
+		column = _column;
+		name = _name;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public int getLine() {
-		return line;
-	}
-
-	public int getColumn() {
-		return column;
-	}
-
-	public void setName(String v_name) {
-		name = v_name;
-	}
-
-	public void setLine(int m_line) {
-		line = m_line;
-	}
-
-	public void setColumn(int m_column) {
-		column = m_column;
-	}
+	String getName() {return name;}
+	String getFile() {return file;}
+	int getLine() {return line;}
+	int getColumn() {return column;}
 }
-
