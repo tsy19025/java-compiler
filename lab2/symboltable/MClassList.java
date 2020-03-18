@@ -11,20 +11,20 @@ public class MClassList extends MType {
 	MClassList(int _line, int _column) {
 		super(_line, _column);
 	}
-	MClassList(int _line, int _column, String _name) {
-		super(_line, _column, _name);
+	MClassList(int _line, int _column, String _name, String _file) {
+		super(_line, _column, _name, _file);
 	}
 
 	// 1表示成功	0表示存在重复定义的类
-	String InsertClass(MClass new_class) {
+	int InsertClass(MClass new_class) {
 		// 是否有重复的class
 		for (int i = 0, sz = class_list.size(); i < sz; i++) {
 			if (class_list.elementAt(i).name.equals(new_class.name)) {
-				return "Repeat define";
+				return 0;
 			}
 		}
 		class_list.addElement(new_class);
-		return null;
+		return 1;
 	}
 
 	// 返回类在list中的下标。-1表示这个类不在list中
