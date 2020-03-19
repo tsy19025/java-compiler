@@ -1,26 +1,40 @@
-package lab2.symboltable;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package minijava.symboltable;
 
 public class MType {
-	public String name; // 符号的名称
-	public int line, column;
-	// -1表示没有定位到这个符号
+    public String name;
+    public int line;
+    public int column;
 
-	MType() {
-		line = -1;
-		column = -1;
-	}
-	MType(int _line, int _column) {
-		line = _line;
-		column = _column;
-	}
-	MType(int _line, int _column, String _name) {
-		line = _line;
-		column = _column;
-		name = _name;
-	}
+    public MType() {
+        this.line = -1;
+        this.column = -1;
+    }
 
-	String getName() {return name;}
-	String getFile() {return file;}
-	int getLine() {return line;}
-	int getColumn() {return column;}
+    public MType(int var1, int var2) {
+        this.line = var1;
+        this.column = var2;
+    }
+
+    public MType(int var1, int var2, String var3) {
+        this.line = var1;
+        this.column = var2;
+        this.name = var3;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getLine() {
+        return this.line;
+    }
+
+    public int getColumn() {
+        return this.column;
+    }
 }

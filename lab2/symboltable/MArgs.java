@@ -1,18 +1,21 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
 package minijava.symboltable;
 
 import java.util.Vector;
 
-/**
- * 存放函数的参数列表
- * 用于检查函数调用时参数是否匹配
- */
-public class MArgs extends MType{
-	public Vector<MType> args_list = new Vector();
-	public MType argu;
-	public MArgs(MType m_argu){
-		argu = m_argu;
-	}
-	public MArgs(){
-		argu = null;
-	}
+public class MArgs extends MType {
+    public Vector<MType> args_list = new Vector();
+    public MType argu;
+
+    public MArgs(MType _parent) {
+        this.argu = _parent;
+    }
+
+    public MArgs() {
+        this.argu = null;
+    }
 }

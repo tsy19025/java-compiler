@@ -1,13 +1,19 @@
-package lab2.symboltable;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
 
-public class MIdentifier extends MType{
-	public MIdentifier() {
-		super();
-	}
-	public MIdentifier(int _line, int _column) {
-		super(_line, _column);
-	}
-	public MIdentifier(int _line, int _column, String _name, String _file) {
-		super(_line, _column, _name, _file);
-	}
+package minijava.symboltable;
+
+public class MIdentifier extends MType {
+    public MIdentifier() {
+    }
+
+    public MIdentifier(int _line, int _column) {
+        super(_line, _column);
+    }
+
+    public MIdentifier(int _line, int _column, String _name) {
+        super(_line, _column, _name);
+    }
 }

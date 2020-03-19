@@ -1,114 +1,161 @@
-package lab2.symboltable;
-import java.util.*;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package minijava.symboltable;
+
+import java.util.Vector;
 
 public class MMethod extends MIdentifier {
-	MClass owner; // 由哪个类定义的
-	String type; // 返回类型: "int", "boolean", "array", class(class name)
-	public Vector<MVar> var_list = new Vector<MVar>(); // 方法里面定义的变量
-	public Vector<MVar> par_list = new Vector<MVar>(); // 方法的参数
+    public MClass owner;
+    public String type;
+    public Vector<MVar> var_list = new Vector();
+    public Vector<MVar> par_list = new Vector();
 
-	public MMethod() {
-		super();
-		owner = null;
-	}
-	public MMethod(MType _owner) {
-		super();
-		owner = _owner;
-	}
-	public MMethod(MType _owner, String _type, int _line, int _column) {
-		super(_line, _column);
-		owner = _owner;
-		type = _type;
-	}
-	public MMethod(MType _owner, int _line, int _column, String _name, String _file) {
-		super(_line, _column, _name, _file);
-		owner = _owner;
-	}
+    public MMethod() {
+        this.owner = null;
+    }
 
-	// 是否有重名的参数
-	String InsertPar(MVar new_par) {
-		if (IsRepeated(new_par.name)) return "Repeat define";
-		par_list.addElement(new_par);
-		return null;
-	}
+    public MMethod(MClass var1) {
+        this.owner = var1;
+    }
 
-	// 返回参数在参数列表中的下标。-1表示这个参数不在列表中
-	int FindPar(MVar new_par) {
-		for (int i = 0, sz = par_list.size(); i < sz; i++) {
-			if (par_list.elementAt(i).name.equals(new_par.name)) {
-				return i;
-			}
-		}
-		return -1;
-	}
+    public MMethod(MClass var1, int var2, int var3, String var4) {
+        super(var2, var3);
+        this.owner = var1;
+        this.type = var4;
+    }
 
-	int FindVar(MVar new_var){
-		for (int i = 0, sz = var_list.size();i < sz; i++) {
-			if (var_list.elementAt(i).name.equals(new_var.name)) {
-				return i;
-			}
-		}
-		return -1;
-	}
+    public MMethod(MClass var1, int var2, int var3, String var4, String var5) {
+        super(var2, var3, var4);
+        this.owner = var1;
+    }
 
-	// 通过名字来找到这个参数
-	MVar FindParByName(String name) {
-		for (int i = 0, sz = par_list.size(); i < sz; i++) {
-			if (par_list.elementAt(i).name.equals(name)) {
-				return par_list.elementAt(i);
-			}
-		}
-		return null;
-	}
+    public String InsertPar(MVar var1) {
+        if (this.IsRepeated(var1.name)) {
+            return "Repeat define";
+        } else {
+            this.par_list.addElement(var1);
+            return null;
+        }
+    }
 
-	int InsertVar(MVar new_var) {
-		if (IsRepeated(new_var.name)) return 0;
-		var_list.addElement(new_var);
-		return 1;
-	}
+    public int FindPar(MVar var1) {
+        int var2 = 0;
 
-	MVar getVar(String var_name){
-		int lenv = var_list.size();
-		for(int i = 0;i < lenv;i ++) {
-			String now_name = ((MVar)var_list.elementAt(i)).getName();
-			if (now_name.equals(var_name)) {
-				return var_list.elementAt(i);
-			}
-		}
-		int lenp = par_list.size();
-		for(int i = 0;i < lenp;i ++){
-			String now_name = ((MVar)par_list.elementAt(i)).getName();
-			if (now_name.equals(var_name)){
-				return par_list.elementAt(i);
-			}
-		}
-		MClass o = owner;
-		String o_name = o.getName();
-		while (o != null && !o_name.equals("") && !o_name.equals("Object")){
-			int leno = o.var_list.size();
-			for(int i = 0;i < leno;i ++){
-				String now_name = ((MVar)o.var_list.elementAt(i)).getName();
-				if (now_name.equals(var_name)) {
-					return o.var_list.elementAt(i);
-				}
-			}
-			o = o.classes.FindClassByName(o.parent_name);
-			o_name = o.getName();
-		}
-		return null;
-	}
+        for(int var3 = this.par_list.size(); var2 < var3; ++var2) {
+            if (((MVar)this.par_list.elementAt(var2)).name.equals(var1.name)) {
+                return var2;
+            }
+        }
 
-	private boolean IsRepeated(String name) {
-		for (int i = 0, sz = par_list.size(); i < sz; i++) {
-			if (par_list.elementAt(i).name.equals(name)) {
-				return true;
-			}
-		}
-		for (int i = 0, sz = var_list.size(); i < sz; i++) {
-			if (var_list.elementAt(i).name.equals(name)) {
-				return true;
-			}
-		}
-		return false;
-	}
+        return -1;
+    }
+
+    public int FindVar(MVar var1) {
+        int var2 = 0;
+
+        for(int var3 = this.var_list.size(); var2 < var3; ++var2) {
+            if (((MVar)this.var_list.elementAt(var2)).name.equals(var1.name)) {
+                return var2;
+            }
+        }
+
+        return -1;
+    }
+
+    public int getVarIndex(String var1) {
+        int var2 = this.var_list.size();
+
+        for(int var3 = 0; var3 < var2; ++var3) {
+            String var4 = ((MVar)this.var_list.elementAt(var3)).getName();
+            if (var4.equals(var1)) {
+                return var3;
+            }
+        }
+
+        return -1;
+    }
+
+    public MVar FindParByName(String var1) {
+        int var2 = 0;
+
+        for(int var3 = this.par_list.size(); var2 < var3; ++var2) {
+            if (((MVar)this.par_list.elementAt(var2)).name.equals(var1)) {
+                return (MVar)this.par_list.elementAt(var2);
+            }
+        }
+
+        return null;
+    }
+
+    public String InsertVar(MVar var1) {
+        if (this.IsRepeated(var1.name)) {
+            return "repeat define";
+        } else {
+            this.var_list.addElement(var1);
+            return null;
+        }
+    }
+
+    public MVar getVar(String var1) {
+        int var2 = this.var_list.size();
+
+        int var3;
+        for(var3 = 0; var3 < var2; ++var3) {
+            String var4 = ((MVar)this.var_list.elementAt(var3)).getName();
+            if (var4.equals(var1)) {
+                return (MVar)this.var_list.elementAt(var3);
+            }
+        }
+
+        var3 = this.par_list.size();
+
+        String var5;
+        for(int var9 = 0; var9 < var3; ++var9) {
+            var5 = ((MVar)this.par_list.elementAt(var9)).getName();
+            if (var5.equals(var1)) {
+                return (MVar)this.par_list.elementAt(var9);
+            }
+        }
+
+        MClass var10 = this.owner;
+
+        for(var5 = var10.getName(); var10 != null && !var5.equals("") && !var5.equals("Object"); var5 = var10.getName()) {
+            int var6 = var10.var_list.size();
+
+            for(int var7 = 0; var7 < var6; ++var7) {
+                String var8 = ((MVar)var10.var_list.elementAt(var7)).getName();
+                if (var8.equals(var1)) {
+                    return (MVar)var10.var_list.elementAt(var7);
+                }
+            }
+
+            var10 = var10.classes.FindClassByName(var10.parent_name);
+        }
+
+        return null;
+    }
+
+    private boolean IsRepeated(String var1) {
+        int var2 = 0;
+
+        int var3;
+        for(var3 = this.par_list.size(); var2 < var3; ++var2) {
+            if (((MVar)this.par_list.elementAt(var2)).name.equals(var1)) {
+                return true;
+            }
+        }
+
+        var2 = 0;
+
+        for(var3 = this.var_list.size(); var2 < var3; ++var2) {
+            if (((MVar)this.var_list.elementAt(var2)).name.equals(var1)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
