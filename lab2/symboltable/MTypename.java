@@ -3,11 +3,11 @@
 // (powered by Fernflower decompiler)
 //
 
-package minijava.symboltable;
+package lab2.symboltable;
 
 public class MTypename extends MType {
-    public String type;
-    public String val;
+    public String type; //类型
+    public String val; //表达式值，从PrimaryExpression读
 
     public MTypename(String _type, String _val, int _line, int _column) {
         super(_line, _column);

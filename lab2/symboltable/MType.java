@@ -2,13 +2,15 @@
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
 //
-
-package minijava.symboltable;
+/*
+    其他符号的基类
+ */
+package lab2.symboltable;
 
 public class MType {
-    public String name;
-    public int line;
-    public int column;
+    public String name; //符号名
+    public int line;    //出现的行
+    public int column;  //出现的列
 
     public MType() {
         this.line = -1;
@@ -38,3 +40,5 @@ public class MType {
         return this.column;
     }
 }
+
+

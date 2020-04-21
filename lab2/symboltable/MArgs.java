@@ -1,9 +1,8 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
-package minijava.symboltable;
+/*
+    参数列表
+    用来检查传入的参数列表与方法里的的参数Vector是否一致
+ */
+package lab2.symboltable;
 
 import java.util.Vector;
 

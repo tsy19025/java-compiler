@@ -3,12 +3,10 @@
 // (powered by Fernflower decompiler)
 //
 
-package minijava.symboltable;
+package lab2.symboltable;
 
 public class MVar extends MIdentifier {
     public String type;
-    public int begin;
-    public int end;
     public MType owner;
     public boolean isInited;
     public boolean isUsed;
